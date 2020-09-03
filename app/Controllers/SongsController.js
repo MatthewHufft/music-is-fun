@@ -1,24 +1,29 @@
 import songService from "../Services/SongsService.js";
 import { ProxyState } from "../AppState.js";
+import Song from "../Models/Song.js";
 
 //Private
 /**Draws the Search results to the page */
 function _drawResults() { 
   let song = ProxyState.songs
   let template = ''
-  song.forEach(s => template += `
-    
-  `)
+  song.forEach(s => template += s.Template)
   document.getElementById('songs').innerHTML = template
 }
 
 /**Draws the Users saved songs to the page */
-function _drawPlaylist() { }
+function _drawMyMusic() { }
 
+
+function _drawCurrentSong() {
+  if (ProxyState.currentSong) {
+    document.getElementById('currentSong').innerHTML = ProxyState.currentSong.currentSongTemplate
+  } else document.getElementById('currentSong').innerHTML = ''
+}
 //Public
 export default class SongsController {
   constructor() {
-    _drawResults()
+    ProxyState.on("songs", _drawResults)
     //TODO Don't forget to register your listeners and get your data
   }
 
