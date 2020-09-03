@@ -9,11 +9,13 @@ class SongsService {
    */
   getMusicByQuery(query) {
     //NOTE You will not need to change this method
+    
     let url = "https://itunes.apple.com/search?callback=?&term=" + query;
     // @ts-ignore
     $.getJSON(url)
       .then(res => {
         ProxyState.songs = res.results.map(rawData => new Song(rawData));
+        console.log(res)
       })
       .catch(err => {
         throw new Error(err);

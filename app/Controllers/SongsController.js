@@ -1,8 +1,16 @@
 import songService from "../Services/SongsService.js";
+import { ProxyState } from "../AppState.js";
 
 //Private
 /**Draws the Search results to the page */
-function _drawResults() { }
+function _drawResults() { 
+  let song = ProxyState.songs
+  let template = ''
+  song.forEach(s => template += `
+    
+  `)
+  document.getElementById('songs').innerHTML = template
+}
 
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() { }
@@ -10,6 +18,7 @@ function _drawPlaylist() { }
 //Public
 export default class SongsController {
   constructor() {
+    _drawResults()
     //TODO Don't forget to register your listeners and get your data
   }
 
