@@ -32,12 +32,13 @@ export default class Song {
   get currentSongTemplate() {
     return `<div class="card">
     <img src="${this.albumArt}" class="card-img-top" alt="...">
-    <div class="card-body">
+    <div class="card-body text-center">
       <h5 class="card-title">${this.artist}, ${this.title}</h5>
       <p class="card-text">Album: ${this.album} | Price: $${this.price}</p>
     </div>
-    <div class="card-body">
-      ${this.Button}
+    <div class="card-body d-flex justify-content-around">
+    ${this.Button}
+    <audio src="${this.preview}" controls></audio>
     </div>
   </div>`;
   }
@@ -46,10 +47,10 @@ export default class Song {
   get Button() {
     if (this.sandboxSong) {
       return `
-       <button class="btn btn-danger" onclick= "app.songsController.removeSong('${this._id}')">Remove</button> 
+       <button class="btn btn-danger" onclick= "app.songsController.removeSong('${this._id}')">Remove Song</button> 
        `
     } else {
-      return `<button class="btn btn-primary" onclick= "app.songsController.addSong('${this._id}')">Buy</button>`
+      return `<button class="btn btn-primary" onclick= "app.songsController.addSong('${this._id}')">Buy Song</button>`
     }
   }
 
