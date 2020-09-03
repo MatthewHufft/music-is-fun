@@ -40,9 +40,13 @@ class SongsService {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  addSong(id) {
+  async addSong(id) {
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
+    let res = await sandBoxApi.post("",ProxyState.currentSong)
+    console.log(res)
+    ProxyState.currentSong = null
+    ProxyState.myMusic = [...ProxyState.myMusic, new Song(res.data.data)]
   }
 
   /**

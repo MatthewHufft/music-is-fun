@@ -8,7 +8,7 @@ class AppState extends EventEmitter {
   songs = []
   /**Collection of songs from the users Playlist
    * @type {Song[]} */
-  playlist = []
+  myMusic = []
   /**@type {Song} */
   currentSong = null
 }
