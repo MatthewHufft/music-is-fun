@@ -58,8 +58,13 @@ class SongsService {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  removeSong(id) {
+  async removeSong(id) {
     //TODO Send the id to be deleted from the server then update the store
+    let res = await sandBoxApi.delete(id)
+    ProxyState.currentSong = null
+    let index = ProxyState.myMusic.findIndex(s => s._id == id)
+    ProxyState.myMusic.splice(index,1)
+    ProxyState.myMusic = ProxyState.myMusic
   }
 }
 

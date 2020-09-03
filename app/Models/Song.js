@@ -37,14 +37,20 @@ export default class Song {
       <p class="card-text">Album: ${this.album} | Price: $${this.price}</p>
     </div>
     <div class="card-body">
-      <button class="btn btn-primary" onclick= "app.songsController.addSong('${this._id}')">Buy</button>
+      ${this.Button}
     </div>
   </div>`;
   }
 
 
   get Button() {
-
+    if (this.sandboxSong) {
+      return `
+       <button class="btn btn-danger" onclick= "app.songsController.removeSong('${this._id}')">Remove</button> 
+       `
+    } else {
+      return `<button class="btn btn-primary" onclick= "app.songsController.addSong('${this._id}')">Buy</button>`
+    }
   }
 
 
