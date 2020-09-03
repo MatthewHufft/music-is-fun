@@ -12,7 +12,7 @@ function _drawResults() {
 }
 
 /**Draws the Users saved songs to the page */
-function _drawMyMusic() { 
+function _drawMyMusic() {
   let template = ''
   let songs = ProxyState.myMusic
   songs.forEach(s => template += s.Template)
@@ -52,6 +52,14 @@ export default class SongsController {
     }
   }
 
+  _viewMySong(_id) {
+    try {
+      songService._viewMySong(_id)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   /**
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
@@ -62,7 +70,7 @@ export default class SongsController {
     } catch (error) {
       console.error(error);
     }
-   }
+  }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server

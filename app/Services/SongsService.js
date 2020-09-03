@@ -3,6 +3,10 @@ import Song from "../Models/Song.js";
 import { sandBoxApi } from "./AxiosService.js";
 
 class SongsService {
+  _viewMySong(_id) {
+    let song = ProxyState.myMusic.find(s => s._id == _id)
+    ProxyState.currentSong = song
+  }
   _viewSong(_id) {
     let song = ProxyState.songs.find(s => s._id == _id)
     ProxyState.currentSong = song
@@ -43,7 +47,7 @@ class SongsService {
   async addSong(id) {
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
-    let res = await sandBoxApi.post("",ProxyState.currentSong)
+    let res = await sandBoxApi.post("", ProxyState.currentSong)
     console.log(res)
     ProxyState.currentSong = null
     ProxyState.myMusic = [...ProxyState.myMusic, new Song(res.data.data)]

@@ -8,12 +8,19 @@ export default class Song {
     this.price = data.trackPrice || data.price;
     this.preview = data.previewUrl || data.preview;
     this._id = data.trackId || data._id;
+    this.sandboxSong = false
+    if (data.user) {
+      this.sandboxSong = true
+    }
   }
 
   get Template() {
+    if (this.sandboxSong) {
+      return `   <li class="list-group-item" role= "button" onclick= "app.songsController._viewMySong('${this._id}')" ><img class = "searchRIMG" src="${this.albumArt}"> ${this.artist}, ${this.album}, ${this.title}, Price: $${this.price}</li>`
+    }
     return `
-      <li class="list-group-item"><img class = "searchRIMG" src="${this.albumArt}"> ${this.artist}, ${this.album}, ${this.title}, Price: $${this.price}<button class="btn btn-primary" onclick= "app.songsController._viewSong('${this._id}')">Listen</button></li>
-        `;
+    <li class="list-group-item" role= "button" onclick= "app.songsController._viewSong('${this._id}')" ><img class = "searchRIMG" src="${this.albumArt}"> ${this.artist}, ${this.album}, ${this.title}, Price: $${this.price}</li>
+    `;
   }
 
   get playlistTemplate() {
@@ -34,6 +41,15 @@ export default class Song {
     </div>
   </div>`;
   }
+
+
+  get Button() {
+
+  }
+
+
+
+
 }
 
 
