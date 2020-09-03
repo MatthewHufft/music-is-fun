@@ -3,13 +3,17 @@ import Song from "../Models/Song.js";
 import { sandBoxApi } from "./AxiosService.js";
 
 class SongsService {
+  _viewSong(_id) {
+    let song = ProxyState.songs.find(s => s._id == _id)
+    ProxyState.currentSong = song
+  }
   /**
    * Takes in a search query and retrieves the results that will be put in the store
    * @param {string} query
    */
   getMusicByQuery(query) {
     //NOTE You will not need to change this method
-    
+
     let url = "https://itunes.apple.com/search?callback=?&term=" + query;
     // @ts-ignore
     $.getJSON(url)

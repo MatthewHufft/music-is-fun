@@ -12,7 +12,7 @@ export default class Song {
 
   get Template() {
     return `
-      <li class="list-group-item"><img src="//placehold.it/75x75"> ${this.artist}, ${this.album}, ${this.title}, Price: $${this.price}</li>
+      <li class="list-group-item"><img class = "searchRIMG" src="${this.albumArt}"> ${this.artist}, ${this.album}, ${this.title}, Price: $${this.price}<button class="btn btn-primary" onclick= "app.songsController._viewSong('${this._id}')">Listen</button></li>
         `;
   }
 
